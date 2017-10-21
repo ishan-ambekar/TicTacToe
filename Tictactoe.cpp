@@ -13,7 +13,7 @@ public:
 	Move minimax();
 	void initialize();
 	int get_move(int n);
-	int comp_move();
+	void comp_move();
 	void display();
 	int maxSearch();
 	int minSearch();
@@ -58,7 +58,7 @@ int Move::get_move(int n)
 		return 0;
 	}
 }
-int Move::comp_move()
+void Move::comp_move()
 {
 	Move bestMove = minimax();
 	int r = bestMove.row;
@@ -68,7 +68,6 @@ int Move::comp_move()
 		mat[r][c] = 'O'; //store comp move
 		mov++;
 		cout << endl;
-		return 1;
 	}
 	
 }
@@ -229,7 +228,7 @@ int Move::minSearch() {
 int main()
 {
 	int i, j, temp = 10,pos;
-	Move obj, obj1;
+	Move obj;
 	obj.initialize();
 	obj.display();
 	while (temp > 0)
@@ -253,12 +252,6 @@ int main()
 				obj.display();
 				break;
 			}
-			else if (i == -10)
-			{
-				cout << "Computer wins" << endl;
-				obj.display();
-				break;
-			}
 			else if (i == 0 && temp==1)
 			{
 				cout << "Game Over" << endl;
@@ -271,14 +264,11 @@ int main()
 		}
 		if (temp % 2 != 0)
 		{
+			cout << "Computer plays" << endl;
+			obj.comp_move();
 			i = obj.evaluate();
-			if (i == 10)
-			{
-				cout << "Player wins" << endl;
-				obj.display();
-				break;
-			}
-			else if (i == -10)
+			obj.display();
+		        if (i == -10)
 			{
 				cout << "Computer wins" << endl;
 				obj.display();
@@ -290,9 +280,6 @@ int main()
 				obj.display();
 				break;
 			}
-			cout << "Computer plays" << endl;
-			obj.comp_move();
-			obj.display();
 			cout << endl;
 			temp--;
 		}
