@@ -138,6 +138,7 @@ int Move::evaluate()
 // This is the minimax function. It considers all
 // the possible ways the game can go and returns
 // the value of the board
+// This will return the best possible move for the player
 Move Move::minimax()
 {
 	int bestMoveScore = 100; // -100 is arbitrary
@@ -160,7 +161,7 @@ Move Move::minimax()
 
 	return bestMove;
 }
-// This will return the best possible move for the player
+
 int Move::maxSearch() {
 	int score = evaluate();
 	if (score == 10)
@@ -296,6 +297,6 @@ int main()
 			temp--;
 		}
 	}
-	system("PAUSE");
+	
 	return 0;
 }
